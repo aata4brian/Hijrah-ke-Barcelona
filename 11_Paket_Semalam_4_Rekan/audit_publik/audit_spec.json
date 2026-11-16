@@ -1,0 +1,8 @@
+{
+  "purpose": "pipeline_check_only_not_model_selection",
+  "frames": 199319,
+  "sha256": {
+    "frozen_candidate.csv": "2c0032f0f17009953eb9a7cec2786b561ad412a579b82dd40b06a3a67427b9bc",
+    "BAR-ATH_possession_gt_public.csv": "24d13807dfd2173b3b567a5f1fa0c597d42653a21d808da6027f98583d446e34"
+  }
+}

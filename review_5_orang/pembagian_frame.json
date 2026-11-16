@@ -1,0 +1,28 @@
+{
+  "game": "BAR-ATH",
+  "source": "tactical",
+  "index": "zero_based_inclusive",
+  "fps": 25,
+  "video_frames": 199319,
+  "evaluation_windows": [
+    {
+      "babak": 1,
+      "first": 11185,
+      "last": 90651
+    },
+    {
+      "babak": 2,
+      "first": 110808,
+      "last": 190197
+    }
+  ],
+  "total_assigned_frames": 158857,
+  "note": "Official published windows, not private label mask; no GT/video read",
+  "members": {
+    "Affan": 31772,
+    "Mosi": 31772,
+    "Khansa": 31771,
+    "Faiq": 31771,
+    "Brian": 31771
+  }
+}

@@ -1,5 +1,16 @@
 # Hijrah ke Barcelona
 
+## Paket kerja terbaru: empat eksperimen + inspeksi lima anggota
+
+- **[Mulai paket empat rekan](MULAI_TIM_4_REKAN.md)** — source, baseline lima fold,
+  tujuh cache IDSSE berlisensi CC BY 4.0, installer dan launcher terverifikasi.
+  Ini tambahan terpisah, bukan penggantian menu lama atau promosi submission.
+- **[Pembagian frame untuk lima anggota](review_5_orang/README.md)** — rentang frame
+  tactical yang tercakup jendela evaluasi resmi, dibagi merata. Hanya untuk
+  inspeksi/debugging; tidak boleh membuat label possession atau mengoreksi CSV.
+- Video, screenshot, tracking dan cuplikan BAR–ATH **tidak disertakan**.
+  Setiap anggota mengakses data resmi secara lokal.
+
 Ruang kerja tim untuk fase Ball Possession di More Than a Hack 2027. Setiap percobaan menghasilkan CSV `frame,label` dengan 199.319 baris untuk kamera tactical. Nomor **07** mereproduksi kandidat `flat/play_bias` yang sudah diverifikasi.
 
 ## Jalankan percobaan

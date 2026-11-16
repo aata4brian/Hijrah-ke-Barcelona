@@ -1,0 +1,16 @@
+{
+  "exclude_parts": ["uji_bersih_20261111", "backups", ".venv", ".venv_repro_v44", "__pycache__"],
+  "sources": [
+    {"glob": "09_Riset_V4/outputs/audit_publik_beku/diagnostik_audit.csv", "kind": "diagnostic", "dataset": "BAR-ATH_public_5min", "scope": "diagnostik_target_beku_bukan_pemilihan_model", "weights": null},
+    {"glob": "09_Riset_V4/outputs/*/diagnostik_bottleneck.csv", "kind": "diagnostic", "dataset": "IDSSE_counterfactual_bukan_deployable", "scope": "oracle_diagnostik_bukan_ranking_model", "combine_splits": true, "manifest": "manifest.json", "weights": {"original": 0.10, "short_gaps": 0.15, "long_gaps": 0.30, "camera_gaps": 0.30, "drift": 0.15}},
+    {"glob": "09_Riset_V4/outputs/closeout_20261116/diagnostik_*.csv", "kind": "diagnostic", "dataset": "diagnostik_bukan_skor_target", "scope": "diagnostik_kalibrasi_dan_video_bukan_spellF1", "weights": null},
+    {"glob": "04_Eksperimen/possession_v1_20261109/idsse_scoreboard.csv", "dataset": "IDSSE", "scope": "eksternal", "default_split": "evaluasi_v1", "weights": null},
+    {"glob": "04_Eksperimen/overnight_20261109/skor_*.csv", "dataset": "IDSSE", "scope": "eksternal", "weights": {"original": 0.10, "short_gaps": 0.15, "long_gaps": 0.35, "camera_gaps": 0.40}},
+    {"glob": "04_Eksperimen/lanjutan_20261109/skor_*.csv", "dataset": "IDSSE", "scope": "eksternal", "weights": {"original": 0.10, "short_gaps": 0.15, "long_gaps": 0.30, "camera_gaps": 0.30, "drift": 0.15}},
+    {"glob": "04_Eksperimen/transisi_20261110/**/skor_*.csv", "dataset": "IDSSE", "scope": "eksternal", "weights": {"original": 0.10, "short_gaps": 0.15, "long_gaps": 0.30, "camera_gaps": 0.30, "drift": 0.15, "gap15": 0.20, "gap30": 0.25}},
+    {"glob": "09_Riset_V4/outputs/*/performa_detail.csv", "dataset": "IDSSE", "scope": "eksternal_retest_bukan_holdout_baru", "combine_splits": true, "manifest": "manifest.json", "weights": {"original": 0.10, "short_gaps": 0.15, "long_gaps": 0.30, "camera_gaps": 0.30, "drift": 0.15}},
+    {"glob": "04_Eksperimen/baseline_*/evaluasi_publik/scoreboard.csv", "dataset": "BAR-ATH_public_5min", "scope": "diagnostik_target_bukan_pemilihan_model", "default_split": "diagnostik_publik_tersimpan", "default_match": "BAR-ATH_public_5min", "weights": null},
+    {"glob": "04_Eksperimen/**/skor_*.csv", "dataset": "tidak_dinyatakan", "scope": "perlu_periksa_protokol", "weights": null}
+  ],
+  "notes": "Urutan aturan penting: aturan pertama yang cocok dipakai. Hanya CSV skor agregat/per-evaluasi; jangan masukkan CSV frame,label atau ground truth. Bobot yang tidak diketahui memakai rerata per skenario lalu per pertandingan, diberi label jelas."
+}

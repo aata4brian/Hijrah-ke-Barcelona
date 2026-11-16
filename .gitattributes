@@ -1,3 +1,6 @@
 * text=auto
 *.bat text eol=crlf
 *.joblib binary
+
+# Frozen payload hashes must survive checkout unchanged on Windows and Unix.
+11_Paket_Semalam_4_Rekan/** -text

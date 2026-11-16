@@ -1,0 +1,8 @@
+# Torch installed separately by PASANG_ENV.ps1 for CPU or CUDA.
+numpy==1.26.4
+scipy==1.17.1
+scikit-learn==1.6.1
+joblib==1.4.2
+pandas==2.2.3
+threadpoolctl==3.7.0
+numba==0.63.1

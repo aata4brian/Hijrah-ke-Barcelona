@@ -1,0 +1,13 @@
+{
+  "train": [
+    "J03WMX",
+    "J03WOY",
+    "J03WPY"
+  ],
+  "calibration": "J03WOH",
+  "test": [
+    "J03WN1",
+    "J03WQQ",
+    "J03WR9"
+  ]
+}

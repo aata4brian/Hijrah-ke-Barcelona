@@ -83,3 +83,16 @@ BAR-ATH_*_smart_tagging.xml
 
 # Per-device dataset and viewer selection
 .mtah-local.json
+
+# Explicit exception: seven CC-BY-4.0 IDSSE caches, never BAR-ATH data.
+!11_Paket_Semalam_4_Rekan/09_Riset_V4/external_cache/
+!11_Paket_Semalam_4_Rekan/09_Riset_V4/external_cache/J03WMX.npz
+!11_Paket_Semalam_4_Rekan/09_Riset_V4/external_cache/J03WN1.npz
+!11_Paket_Semalam_4_Rekan/09_Riset_V4/external_cache/J03WOH.npz
+!11_Paket_Semalam_4_Rekan/09_Riset_V4/external_cache/J03WOY.npz
+!11_Paket_Semalam_4_Rekan/09_Riset_V4/external_cache/J03WPY.npz
+!11_Paket_Semalam_4_Rekan/09_Riset_V4/external_cache/J03WQQ.npz
+!11_Paket_Semalam_4_Rekan/09_Riset_V4/external_cache/J03WR9.npz
+
+# Never publish local review exports, screenshots, clips, or personal settings.
+review_5_orang/lokal/

@@ -1,0 +1,7 @@
+﻿anggota,bagian,segmen,babak,frame_awal_inklusif,frame_akhir_inklusif,jumlah_frame,fps,waktu_awal_video,waktu_akhir_eksklusif_video,tujuan
+Affan,1,1,1,11185,42956,31772,25,00:07:27.400,00:28:38.280,inspeksi_teknis_bukan_anotasi
+Mosi,2,1,1,42957,74728,31772,25,00:28:38.280,00:49:49.160,inspeksi_teknis_bukan_anotasi
+Khansa,3,1,1,74729,90651,15923,25,00:49:49.160,01:00:26.080,inspeksi_teknis_bukan_anotasi
+Khansa,3,2,2,110808,126655,15848,25,01:13:52.320,01:24:26.240,inspeksi_teknis_bukan_anotasi
+Faiq,4,1,2,126656,158426,31771,25,01:24:26.240,01:45:37.080,inspeksi_teknis_bukan_anotasi
+Brian,5,1,2,158427,190197,31771,25,01:45:37.080,02:06:47.920,inspeksi_teknis_bukan_anotasi

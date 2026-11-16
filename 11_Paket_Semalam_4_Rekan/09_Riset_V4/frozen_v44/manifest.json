@@ -1,0 +1,47 @@
+{
+  "version": "v4.4",
+  "code_sha256": "668a67ea679cf8a62ddfcb3e50e569ad406dfa2dc54968e1a80422e7fb680ca3",
+  "cache_sha256": {
+    "J03WMX": "ff096d4aa1074e76be37f5ac544f158c79b71b011a64f5f24e76d26fbf9a0e65",
+    "J03WN1": "b86f949dfee1fec27f6314e4830204b1b0dafe543b0f3dbff72966dccb73ad67",
+    "J03WOH": "47f1200d710badeb59c4bcb358bee94136eb10b82cfbc4426c3587adb3c04d79",
+    "J03WOY": "8a9f5ff44fe6fea2989f1091db266f7fdd58e65000762de90b2242843d9eedb5",
+    "J03WPY": "4f639ccf5265b9bc14fa158080bfdbfb33ea1bb2dd7dd9e28d6c7bac531f6d8a",
+    "J03WQQ": "ee26d84f91e5d5e9c530b1acc2a285d18dce51a1fc871a636c8c36902acb89b7",
+    "J03WR9": "a91636a7fd2018d2c0f7c19fdda6a16fd431a196631cc7a4c04c58528b9bb2af"
+  },
+  "folds": [
+    0,
+    2,
+    1,
+    3,
+    4
+  ],
+  "seed": 331,
+  "train_scenarios": [
+    "original",
+    "camera_gaps",
+    "drift"
+  ],
+  "test_scenarios": [
+    "original",
+    "short_gaps",
+    "long_gaps",
+    "camera_gaps",
+    "drift"
+  ],
+  "iterations": 90,
+  "epochs": 5,
+  "steps": 120,
+  "device": "cuda",
+  "python": "3.12.10",
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.6.1",
+    "joblib": "1.4.2",
+    "numba": "0.63.1",
+    "torch": "2.5.1+cu121"
+  },
+  "note": "All seven matches were inspected in earlier research. This is a controlled retest, not a new independent holdout."
+}
