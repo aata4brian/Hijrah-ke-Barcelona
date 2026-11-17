@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; media-src 'self' blob:; img-src data:; connect-src 'self'; form-action 'none'">
-<title>Hijrah ke Barcelona · Review pertandingan</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; media-src blob:; img-src data:; connect-src 'none'; form-action 'none'">
+<title>Hijrah ke Barcelona · Bandingkan dua kandidat</title>
 <style>
 :root {
   color-scheme: dark;
@@ -113,33 +113,67 @@ input[type=number] { width: 92px; font-family: ui-monospace, monospace; }
   .tag { display: grid; place-content: center; justify-items: center; gap: 0; font-size: 8px; }
   .spacer { display: none; }
 }
+/* Positions identify the CSV; every prediction cell is colored by its label. */
+:root { --H: #368ef5; --A: #ff3744; --D: #ffd43b; --X: #aeb4be; }
+.sources { grid-template-columns: repeat(5,minmax(0,1fr)); }
+.stage { grid-template-columns: 118px minmax(0,1fr) 118px; gap: 0; border: 3px solid #080b10; }
+.screen { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; }
+.predictions { display: grid; grid-template-columns: 1fr 1fr; }
+.topbar { border-radius: 0; flex-wrap: wrap; min-height: 52px; gap: 3px 10px; padding: 7px 12px; }
+.topbar .letter { font-size: 25px; }
+#prediction, #prediction2 { background: var(--label-bg, #252c39); color: var(--label-ink, #c0c8d5); }
+.viewer { flex: 1; width: 100%; min-height: 230px; max-height: max(250px,calc(100dvh - 365px)); }
+.rail { grid-row: 1; gap: 3px; background: #080b10; border: 0; padding: 0; border-radius: 0; grid-template-rows: 52px repeat(9,minmax(25px,1fr)); }
+.rail h2 { color: white; letter-spacing: .03em; display: grid; place-content: center; padding: 5px 2px; font-size: 10px; }
+#rail { grid-column: 3; border-left: 3px solid #080b10; }
+#rail2 { grid-column: 1; border-right: 3px solid #080b10; }
+#rail h2, #rail2 h2 { background: #171d28; color: #e8edf5; }
+#rail .tag, #rail2 .tag { background: var(--label-bg, #252c39); color: var(--label-ink, #c0c8d5); }
+.tag { border: 0; border-radius: 0; font-size: 11px; padding: 4px 8px; }
+.tag[aria-current="true"] { outline: 3px solid white; outline-offset: -4px; box-shadow: inset 0 0 0 1px #000; }
+.tag:disabled { opacity: 1; }
+.reference { display: flex; flex-direction: row; align-items: center; gap: 9px; margin-top: 8px; padding: 3px 8px; }
+.reference h2 { padding: 3px; }
+.reference .label { flex: 0 1 auto; min-height: 0; display: flex; align-items: center; gap: 7px; padding: 3px 8px; border-radius: 3px; }
+.reference .letter { font-size: 17px; }
+.reference .labelname { max-width: none; }
+.reference .coverage { padding: 3px; }
+.comparison { font: 650 11px ui-monospace,monospace; }
+.comparison[data-different="true"] { color: #ffb69d; }
+.comparison[data-different="false"] { color: #9be6c0; }
+.source1, .source2 { border-top: 3px solid #8895ab; }
+.color-key { display: inline-block; width: 12px; height: 12px; border-radius: 2px; }
+@media(max-width:850px) { .sources { grid-template-columns: repeat(2,minmax(0,1fr)); } .stage { grid-template-columns: 89px minmax(0,1fr) 89px; } .topbar { padding: 5px 7px; } .tag { padding: 2px 4px; font-size: 10px; } }
+@media(max-width:600px) { .stage { grid-template-columns: 58px minmax(0,1fr) 58px; } .screen { grid-column: 2; grid-row: 1; } .rail { grid-row: 1; grid-template: 52px repeat(9,minmax(25px,1fr)) / 1fr; } .rail h2 { grid-column: 1; font-size: 8px; white-space: normal; } .tag { display: grid; gap: 0; font-size: 8px; padding: 2px; } .topbar > span:first-child { font-size: 8px; } .topbar .labelname { display: none; } .topbar .letter { font-size: 20px; } .viewer { min-height: 245px; aspect-ratio: auto; } .reference { flex-wrap: wrap; } .reference .coverage { font-size: 10px; } .comparison { font-size: 10px; } }
 </style>
 </head>
 <body>
 <main>
   <header>
     <div class="heading"><div class="mark" aria-hidden="true">HB</div>
-      <div><h1>Review pertandingan</h1><p class="sub">Hijrah ke Barcelona · Barcelona vs Athletic Club</p></div>
+      <div><h1>Bandingkan dua kandidat</h1><p class="sub">Hijrah ke Barcelona · satu video, dua CSV, frame yang sama</p></div>
     </div>
     <span class="pill">TACTICAL / 25 FPS / LOKAL</span>
   </header>
   <section class="sources" aria-label="Berkas yang dibuka">
     <label class="file"><span class="number">01</span><div><strong>Video tactical</strong><small id="videoName">Pilih MP4 lokal atau dari H:</small></div><input id="videoFile" type="file" accept="video/*,.mp4"></label>
-    <label class="file"><span class="number">02</span><div><strong>Prediksi tim</strong><small id="predName">Pilih CSV hasil program</small></div><input id="predFile" type="file" accept=".csv,text/csv"></label>
-    <label class="file"><span class="number">03</span><div><strong>Referensi publik</strong><small id="refName">Pilih CSV resmi 5 menit</small></div><input id="refFile" type="file" accept=".csv,text/csv"></label>
-    <label class="file"><span class="number">04</span><div><strong>Tracking bola · opsional</strong><small id="atdName">Pilih tactical ATD .txt</small></div><input id="atdFile" type="file" accept=".txt,text/plain"></label>
+    <label class="file source1"><span class="number">02</span><div><strong>CSV 1 · atas &amp; sisi kanan</strong><small id="predName">Pilih CSV_1 hasil kandidat</small></div><input id="predFile" type="file" accept=".csv,text/csv"></label>
+    <label class="file source2"><span class="number">03</span><div><strong>CSV 2 · atas &amp; sisi kiri</strong><small id="pred2Name">Pilih CSV_2 hasil kandidat</small></div><input id="pred2File" type="file" accept=".csv,text/csv"></label>
+    <label class="file"><span class="number">04</span><div><strong>Referensi publik · opsional</strong><small id="refName">Tidak diperlukan untuk membandingkan</small></div><input id="refFile" type="file" accept=".csv,text/csv"></label>
+    <label class="file"><span class="number">05</span><div><strong>Tracking bola · opsional</strong><small id="atdName">Pilih tactical ATD .txt</small></div><input id="atdFile" type="file" accept=".txt,text/plain"></label>
   </section>
   <p class="status" id="message" role="status" hidden></p>
   <section class="desk" id="desk" aria-label="Player pertandingan">
     <div class="stage">
-      <aside class="reference">
-        <h2>Asli · publik</h2>
-        <div class="label" id="reference" data-label="none"><strong class="letter">—</strong><span class="labelname">Belum dibuka</span></div>
-        <p class="coverage" id="coverage">Label resmi tersedia hanya di cuplikan publik.</p>
-      </aside>
+      <aside class="rail" id="rail2" aria-label="CSV 2: sembilan frame di sekitar frame aktif"><h2>CSV 2<br>Urutan frame</h2></aside>
       <div class="screen">
+        <div class="predictions">
+          <div class="topbar label" id="prediction2" data-label="none">
+            <span>CSV 2 · PREDIKSI</span><span class="readout"><strong class="letter">—</strong><span class="labelname">Belum dibuka</span></span>
+          </div>
         <div class="topbar label" id="prediction" data-label="none">
-          <span>PREDIKSI TIM</span><span class="readout"><strong class="letter">—</strong><span class="labelname">Belum dibuka</span></span>
+          <span>CSV 1 · PREDIKSI</span><span class="readout"><strong class="letter">—</strong><span class="labelname">Belum dibuka</span></span>
+        </div>
         </div>
         <div class="viewer">
           <video id="video" playsinline preload="metadata" aria-label="Video tactical"></video>
@@ -149,8 +183,13 @@ input[type=number] { width: 92px; font-family: ui-monospace, monospace; }
           </div>
         </div>
       </div>
-      <aside class="rail" id="rail" aria-label="Sembilan frame prediksi di sekitar frame aktif"><h2>Urutan frame</h2></aside>
+      <aside class="rail" id="rail" aria-label="CSV 1: sembilan frame di sekitar frame aktif"><h2>CSV 1<br>Urutan frame</h2></aside>
     </div>
+    <aside class="reference" aria-label="Referensi publik opsional">
+      <h2>Referensi publik</h2>
+      <div class="label" id="reference" data-label="none"><strong class="letter">—</strong><span class="labelname">Belum dibuka</span></div>
+      <p class="coverage" id="coverage">Opsional; bukan prediksi CSV 2.</p>
+    </aside>
     <div class="deck">
       <div class="facts">
         <span class="fact">Waktu video <b id="time">—</b></span>
@@ -158,6 +197,7 @@ input[type=number] { width: 92px; font-family: ui-monospace, monospace; }
         <span class="fact">ATD ID <b id="atdId">—</b></span>
         <span class="fact">Bola (ATD) <b id="ball">Belum dibuka</b></span>
         <span class="fact">Sinkronisasi <b id="sync">Menunggu video</b></span>
+        <span class="comparison" id="comparison">Buka kedua CSV untuk membandingkan</span>
       </div>
       <div class="timeline">
         <input id="slider" type="range" min="0" max="199318" step="1" value="0" aria-label="Posisi video per frame" disabled>
@@ -172,13 +212,15 @@ input[type=number] { width: 92px; font-family: ui-monospace, monospace; }
         <select id="speed" aria-label="Kecepatan putar" disabled><option value=".25">0,25×</option><option value=".5">0,5×</option><option value="1" selected>1×</option><option value="1.5">1,5×</option><option value="2">2×</option></select>
         <span class="spacer"></span>
         <button id="publicStart" title="Lompat ke frame pertama yang punya referensi resmi" disabled>Cuplikan publik</button>
-        <button id="nextChange" title="Cari label prediksi berikutnya yang berbeda" disabled>Ganti label ↗</button>
+        <button id="nextChange" title="Perubahan label berikutnya di salah satu CSV" disabled>Ganti label ↗</button>
+        <button id="nextDifference" title="Lompat ke awal bagian berbeda berikutnya" disabled>Beda berikut ↗</button>
         <form id="jump"><input id="target" type="number" min="0" max="199318" step="1" placeholder="No. frame" aria-label="Nomor frame tujuan" required disabled> <button id="go" disabled>Ke frame</button></form>
         <button id="fullscreen" title="Layar penuh dengan overlay">⛶ Layar penuh</button>
       </div>
     </div>
   </section>
   <div class="legend" aria-label="Arti warna label">
+    <span>CSV 2: kiri · CSV 1: kanan. Warna mengikuti label setiap frame:</span>
     <span><b class="label" data-label="H">H</b> Barcelona</span>
     <span><b class="label" data-label="A">A</b> Athletic</span>
     <span><b class="label" data-label="D">D</b> Bola mati</span>
@@ -198,16 +240,18 @@ const labelNames = {H: "Barcelona", A: "Athletic", D: "Bola mati", X: "Abstain"}
 const state = {
   frame: null, pending: null, last: TOTAL - 1, ready: false, videoUrl: null,
   callback: null, settle: null, presented: null, sync: "Menunggu video",
-  pred: null, ref: null, coverage: [], atd: null, warnings: {}
+  pred: null, pred2: null, ref: null, coverage: [], atd: null, warnings: {}, differences: 0
 };
 const rail = [];
+for (const [id,key] of [["rail","pred"],["rail2","pred2"]]) {
 for (let offset = -4; offset <= 4; offset++) {
   const button = document.createElement("button");
   button.className = "tag";
   button.innerHTML = "<span></span><strong></strong>";
   button.addEventListener("click", () => seekFrame(state.frame + offset));
-  $("rail").append(button);
-  rail.push({offset, button});
+  $(id).append(button);
+  rail.push({offset, button, key});
+}
 }
 
 function number(value) {
@@ -240,17 +284,18 @@ function render() {
   const seeking = state.pending !== null;
   const reference = active ? state.ref?.[frame] : "";
   setLabel($("prediction"), active && state.pred?.[frame], seeking ? "Mencari frame…" : (state.pred ? "Menunggu video" : "Belum dibuka"));
+  setLabel($("prediction2"), active && state.pred2?.[frame], seeking ? "Mencari frame…" : (state.pred2 ? "Menunggu video" : "Belum dibuka"));
   setLabel($("reference"), reference && reference !== "X" ? reference : "", seeking ? "Mencari frame…" : (state.ref ? "Tidak tersedia" : "Belum dibuka"));
-  for (const {offset, button} of rail) {
+  for (const {offset, button, key} of rail) {
     const index = active ? frame + offset : -1;
     const within = index >= 0 && index <= state.last;
-    const label = within ? state.pred?.[index] : "";
+    const label = within ? state[key]?.[index] : "";
     button.dataset.label = label || "none";
     button.children[0].textContent = within ? number(index) : "—";
     button.children[1].textContent = label || "·";
     button.disabled = !within || !state.ready;
     button.setAttribute("aria-current", String(active && offset === 0));
-    button.title = within ? `Ke frame ${index}${label ? " · " + labelNames[label] : ""}` : "";
+    button.title = within ? `${key === "pred" ? "CSV 1" : "CSV 2"} · Ke frame ${index}${label ? " · " + labelNames[label] : ""}` : "";
   }
   $("time").textContent = active ? timestamp(frame) : "—";
   $("frame").textContent = active ? `${number(frame)} / ${number(state.last)}` : "—";
@@ -264,7 +309,14 @@ function render() {
   $("target").placeholder = active ? String(frame) : "No. frame";
   $("play").textContent = video.paused ? "▶ Putar" : "❚❚ Jeda";
   for (const id of ["slider","play","prev","next","backFive","forwardFive","speed","target","go"]) $(id).disabled = !state.ready;
-  $("nextChange").disabled = !state.ready || !state.pred || !active;
+  $("nextChange").disabled = !state.ready || !(state.pred || state.pred2) || !active;
+  $("nextDifference").disabled = !state.ready || !state.pred || !state.pred2 || !active;
+  const comparing = Boolean(state.pred && state.pred2);
+  const different = comparing && active && state.pred[frame] !== state.pred2[frame];
+  $("comparison").dataset.different = comparing && active ? String(different) : "";
+  $("comparison").textContent = comparing
+    ? `${active ? (different ? "BERBEDA" : "SAMA") : "Menunggu video"} · ${number(state.differences)} frame berbeda (${(state.differences / TOTAL * 100).toFixed(2)}%)`
+    : "Buka kedua CSV untuk membandingkan";
   $("publicStart").disabled = !state.ready || !state.coverage.length || state.coverage[0][0] > state.last;
 }
 
@@ -366,7 +418,12 @@ function bindData(key, read, save) {
   });
 }
 
-bindData("pred", async file => loadLabels(await file.text(), false), data => { state.pred = data.labels; });
+function savePrediction(key, data) {
+  state[key] = data.labels;
+  state.differences = state.pred && state.pred2 ? state.pred.reduce((n,label,i) => n + (label !== state.pred2[i]),0) : 0;
+}
+bindData("pred", async file => loadLabels(await file.text(), false), data => savePrediction("pred",data));
+bindData("pred2", async file => loadLabels(await file.text(), false), data => savePrediction("pred2",data));
 bindData("ref", async file => loadLabels(await file.text(), true), data => {
   state.ref = data.labels;
   state.coverage = data.ranges;
@@ -510,10 +567,19 @@ $("slider").addEventListener("input", event => seekFrame(event.target.valueAsNum
 $("speed").addEventListener("change", event => { video.playbackRate = Number(event.target.value); });
 $("publicStart").addEventListener("click", () => seekFrame(state.coverage[0][0]));
 $("nextChange").addEventListener("click", () => {
-  const label = state.pred[state.frame];
+  const current1 = state.pred?.[state.frame], current2 = state.pred2?.[state.frame];
   let frame = state.frame + 1;
-  while (frame <= state.last && state.pred[frame] === label) frame++;
+  while (frame <= state.last && (!state.pred || state.pred[frame] === current1) && (!state.pred2 || state.pred2[frame] === current2)) frame++;
   if (frame <= state.last) seekFrame(frame);
+});
+$("nextDifference").addEventListener("click", () => {
+  let frame = state.frame + 1;
+  if (state.pred[state.frame] !== state.pred2[state.frame]) {
+    while (frame <= state.last && state.pred[frame] !== state.pred2[frame]) frame++;
+  }
+  while (frame <= state.last && state.pred[frame] === state.pred2[frame]) frame++;
+  if (frame <= state.last) { warn("difference",""); seekFrame(frame); }
+  else warn("difference","Tidak ada bagian berbeda lagi setelah frame ini.");
 });
 $("jump").addEventListener("submit", event => {
   event.preventDefault();
@@ -536,49 +602,6 @@ document.addEventListener("keydown", event => {
   }
 });
 render();
-
-async function openLocalBundle() {
-  if (!["127.0.0.1", "localhost"].includes(location.hostname) ||
-      new URLSearchParams(location.search).get("autoload") !== "1") return;
-  const fetchLocal = async route => {
-    const response = await fetch("./" + route, {cache: "no-store"});
-    if (!response.ok) throw Error("Berkas lokal gagal dibaca: " + route);
-    return response;
-  };
-  try {
-    const manifest = await (await fetchLocal("manifest.json")).json();
-    await Promise.all(["predictions.csv", "reference.csv"].map(async route => {
-      if (!manifest[route]) return;
-      const publicFile = route === "reference.csv";
-      const data = loadLabels(await (await fetchLocal(route)).text(), publicFile);
-      const key = publicFile ? "ref" : "pred";
-      state[key] = data.labels;
-      $(key + "Name").textContent = manifest[route];
-      if (publicFile) { state.coverage = data.ranges; renderCoverage(); }
-    }));
-    if (manifest.video) {
-      $("videoName").textContent = manifest.video;
-      state.videoUrl = new URL("./video", location.href).href;
-      state.sync = "Membuka video…";
-      $("placeholderTitle").textContent = "Membuka video dari folder lokal";
-      $("placeholderNote").textContent = "Drive untuk desktop mungkin perlu mengambil bagian file terlebih dahulu.";
-      video.src = state.videoUrl;
-      video.load();
-      trackVideo(state.videoUrl);
-    }
-    render();
-    if (manifest["tracking.txt"]) {
-      const response = await fetchLocal("tracking.txt");
-      state.atd = await loadAtd({stream: () => response.body});
-      $("atdName").textContent = manifest["tracking.txt"];
-      render();
-    }
-  } catch (error) {
-    warn("autoload", error.message + " Berkas juga dapat dipilih lewat tombol di atas.");
-  }
-}
-openLocalBundle();
-
 </script>
 </body>
 </html>

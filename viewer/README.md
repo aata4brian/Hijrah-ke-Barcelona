@@ -1,5 +1,18 @@
 # Review video lokal
 
+## Viewer dua CSV pada rilis
+
+Halaman HTML kini mendukung dua CSV lokal: CSV 2 di kiri dan CSV 1 di kanan,
+rail frame H biru/A merah/D kuning/X abu-abu, dan tombol **Beda berikut ↗**.
+Pilih video tactical dan CSV dari komputer sendiri. Tombol beda menavigasi
+ketidaksepakatan model, bukan menentukan label benar atau memilih kandidat
+dari penilaian manusia. Jangan membuat koreksi target dari hasil menonton.
+
+`node viewer/test_dual_viewer.cjs` memeriksa logika, validasi CSV, pergantian
+frame, warna dinamis, serta batas navigasi. Rendering dan playback video nyata
+belum diuji oleh tes Node. Bagian berikut menjelaskan launcher lokal yang
+dipertahankan dari versi sebelumnya.
+
 Buka **BUKA_VIEWER.bat** dari folder utama paket. Viewer memuat video tactical, CSV prediksi terbaru di outputs/, referensi publik 5 menit, dan indikator bola dari ATD. Browser tidak mengirim berkas ke layanan luar. Terminal harus tetap terbuka selama menonton; tekan Ctrl+C untuk menutup server.
 
 Lokasi data dipilih dengan --data-dir atau variabel MTAH_DATA_DIR. Konfigurasi pribadi dapat ditulis dalam .mtah-local.json di folder utama. File ini diabaikan Git dan tidak masuk ZIP tim.
