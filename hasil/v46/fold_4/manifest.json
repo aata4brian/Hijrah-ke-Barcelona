@@ -1,0 +1,112 @@
+{
+  "version": "fusion_v46",
+  "folds": [
+    4
+  ],
+  "split": {
+    "train": [
+      "J03WN1",
+      "J03WOH",
+      "J03WOY"
+    ],
+    "calibration": "J03WMX",
+    "test": [
+      "J03WPY",
+      "J03WQQ",
+      "J03WR9"
+    ]
+  },
+  "train_seed": 331,
+  "calibration_seed": 348,
+  "test_seed": 432,
+  "train_scenarios": [
+    "original",
+    "camera_gaps",
+    "drift"
+  ],
+  "test_scenarios": [
+    "original",
+    "short_gaps",
+    "long_gaps",
+    "camera_gaps",
+    "drift"
+  ],
+  "feature_schema": "v46-collective-restart-quality-v1",
+  "old_columns": 203,
+  "extra_columns": 78,
+  "parameters": {
+    "max_iter": 60,
+    "max_leaf_nodes": 20,
+    "min_samples_leaf": 80,
+    "learning_rate": 0.08,
+    "l2_regularization": 2.0,
+    "early_stopping": false,
+    "random_state": 331
+  },
+  "cap_train_rows_per_half_scenario_side": 6000,
+  "grid": {
+    "tree_weights": [
+      0.0,
+      0.25,
+      0.5
+    ],
+    "specialist_weights": [
+      0.0,
+      0.15,
+      0.35
+    ]
+  },
+  "cache_sha256": {
+    "J03WMX": "ff096d4aa1074e76be37f5ac544f158c79b71b011a64f5f24e76d26fbf9a0e65",
+    "J03WN1": "b86f949dfee1fec27f6314e4830204b1b0dafe543b0f3dbff72966dccb73ad67",
+    "J03WOH": "47f1200d710badeb59c4bcb358bee94136eb10b82cfbc4426c3587adb3c04d79",
+    "J03WOY": "8a9f5ff44fe6fea2989f1091db266f7fdd58e65000762de90b2242843d9eedb5",
+    "J03WPY": "4f639ccf5265b9bc14fa158080bfdbfb33ea1bb2dd7dd9e28d6c7bac531f6d8a",
+    "J03WQQ": "ee26d84f91e5d5e9c530b1acc2a285d18dce51a1fc871a636c8c36902acb89b7",
+    "J03WR9": "a91636a7fd2018d2c0f7c19fdda6a16fd431a196631cc7a4c04c58528b9bb2af"
+  },
+  "source_models_sha256": {
+    "outputs\\local_deep_v45_fold_4\\variant_candidate.joblib": "897ddeb143d130b7a23b2c3f1766e29542cac59b30757852534eb7e3302bd1a4",
+    "outputs\\riset_v44_full\\fold_4\\tree_candidate.joblib": "2751fd449bfcd11e15ff00b37a7d9ea62f5fd719c78f648a980f3184cc7682a3"
+  },
+  "code_sha256": {
+    "riset_v4/fusion_experiment.py": "a8e360f89a7ee14c8134d23e78f8c409e13baf806ff201c72288e13320434a91",
+    "riset_v4/fusion_features.py": "4be48da0536fbaf7ca72ebafde622c775bae2209113b4467639f2d838f96369b",
+    "riset_v4/fusion_model.py": "420ba1b4cd08e14ceeb8bf9791385ea3eec374b7c2f16b37dd15af329dfd9476",
+    "riset_v4/features.py": "7bc974b7336a33d1ee26eaa435c9dba8b3829db0ff2b64b6546b5f16c359b40c",
+    "riset_v4/models.py": "cd8a96e54c020eff6e4506aa2ee38f74675cb55d53c94ffc3c0ce6b800ee22d3",
+    "riset_v4/deep_temporal.py": "fd30571cceefb62c1f9bc45425adbc087e724529c61569d0738a4a1c2f9195e5",
+    "riset_v4/decode.py": "e9cc5e864657417342e2ee9bbfa3cc56b163961af1543acc0108d036e1008209",
+    "riset_v4/labels.py": "9a61b1ed1355ec75dc4cfddc376a179ff0d6ee71b5b5cebfa7827a05a9c278c7",
+    "riset_v4/data.py": "9a44bfe63b079e784c251c7683e54f679785fa3f1a09567e97153886fc53aedd",
+    "riset_v4/evaluate.py": "36c4834f0b7fa44a799cfc70100bd390e35d7fddf03611b64d6d8e66aee8f108",
+    "riset_v4/experiment_io.py": "e0f1378515ee7b1fc71d847390de43f92c65bc82d226bbe1af86c38bff2cbf28",
+    "riset_v4/run.py": "697226b7050b78e6fd462554a8080b67e7a9a1096ea56a32be9444acac4cb68c",
+    "riset_v4/tcn.py": "2b3c86f817f6e3365c08381c6a8cb2df1be3f536cd06eca7c96d4faa29fea39c",
+    "eksperimen/pipeline/explore_benchmark.py": "e3f48c1f5c9be875c55b3f81c8a6b50c0f7e52608457abb5828bbaeea5aa3bf7",
+    "eksperimen/pipeline/explore_model.py": "1914437199e8041f5ef50c1b0618680b3367539c2ed1c2d3c85dbff90c70336b",
+    "eksperimen/pipeline/explore_submission.py": "d0582a5d5c5f09890c92888a2dbb1444934cd9d23f4e88df2243e99b70b9cff7",
+    "eksperimen/pipeline/make_submission.py": "5e5bf9ad07242b1fa496e3030af2fc325fa0e76f5a53a82ef3df66e31a134609",
+    "eksperimen/pipeline/night_benchmark.py": "c684e242d4023832ef3ad83872d0ab458ceb1b732202b0cc20b5221162a73a5f",
+    "eksperimen/pipeline/night_model.py": "b685be20bb4c8ac74a5abc82c23fb681e7d624c7687933293a7314847e391864",
+    "eksperimen/pipeline/night_submission.py": "a4edc323f88a185b1304b2b2b67096c394e793d1b44b45178547efc384bb1a84",
+    "eksperimen/pipeline/night_tracking.py": "d6756230ad447faeb625676283f17404539681bd3c2461cbdb2b81c5ff34d2de",
+    "eksperimen/pipeline/possession.py": "a5749c22f7bc620dd38ee5d9dfbe0865157202018d96dfbc7139202d0a8291be",
+    "eksperimen/pipeline/test_possession.py": "ced854efd67638342e88e2fc136f9f84fc35f64932c8a9ebbdaecb484d6cc803",
+    "eksperimen/pipeline/transition_model.py": "13a9fc16d13f5dc4540dcf0fd275804d04b514762a074e560836e6162db1ebae",
+    "evaluation/possession_metrics.py": "32c878630c74fb52a90c301485d6dff806509d8e933b1177b6035ee8e8f42b80"
+  },
+  "python": "3.12.10",
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.6.1",
+    "joblib": "1.4.2",
+    "torch": "2.5.1+cu121",
+    "numba": "0.63.1"
+  },
+  "target_gt_read": false,
+  "cue_modalities_trained": false,
+  "no_new_deep_training": true,
+  "note": "Known seven matches controlled retest, not new holdout. Cue sidecars excluded: no aligned external audio/flag labels."
+}

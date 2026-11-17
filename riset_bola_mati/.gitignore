@@ -1,0 +1,9 @@
+outputs/
+models/
+*.local.json
+__pycache__/
+*.py[cod]
+*.mp4
+*.wav
+*.png
+*.jpg

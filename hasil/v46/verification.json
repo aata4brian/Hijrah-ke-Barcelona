@@ -1,0 +1,63 @@
+{
+  "complete": true,
+  "folds": [
+    {
+      "folder": "outputs\\fusion_v46_fold_0",
+      "result_sha256": "8866ab106a7194c43dbd9192a7a94f0e5b5c784774afc45b8c04f16940bca93b",
+      "rows": 75,
+      "fold": 0
+    },
+    {
+      "folder": "outputs\\fusion_v46_fold_1",
+      "result_sha256": "3a4fc19cf56af88b8484869292b17e1087a585ae502be5d81babca1f0daff4e0",
+      "rows": 75,
+      "fold": 1
+    },
+    {
+      "folder": "outputs\\fusion_v46_fold_2",
+      "result_sha256": "564efa8b9c99aeb9f97aacaf0c0e9170783830aa9d23f50bcb6e91d40b7af621",
+      "rows": 75,
+      "fold": 2
+    },
+    {
+      "folder": "outputs\\fusion_v46_fold_3",
+      "result_sha256": "2b389bfc4523284dc5c8b40f9436290c484510fa39f36dafb905c5d51f791e56",
+      "rows": 75,
+      "fold": 3
+    },
+    {
+      "folder": "outputs\\fusion_v46_fold_4",
+      "result_sha256": "e94dbb0f87c067caba96a6e63f96d3d8c35f7673fe880285def99069b0f97a71",
+      "rows": 75,
+      "fold": 4
+    }
+  ],
+  "rows": 375,
+  "unique_matches": [
+    "J03WMX",
+    "J03WN1",
+    "J03WOH",
+    "J03WOY",
+    "J03WPY",
+    "J03WQQ",
+    "J03WR9"
+  ],
+  "methods": [
+    "calibration_selected_v46",
+    "control_old_features",
+    "expanded_tracking_features",
+    "frozen_deep_v45",
+    "frozen_ensemble_deep_v45"
+  ],
+  "target_gt_read": false,
+  "promoted": false,
+  "artifacts_sha256": {
+    "by_match.csv": "90757ca99287e99d7eb7be1882a49d248fc220c6ee02c7e409fdcd2f6bf77327",
+    "calibration_choices.json": "0f1a943e64d8520fe6c687abeb7764d6658a54439b322a7b14bf86cd2e7fd5d0",
+    "comparison_summary.csv": "3b550824cc53bacc883e6ca06f9195e9c53a3a855bd19255d007990a475d995e",
+    "evaluation_rows.csv": "a271d760c8131bc3ae8a8c3ffc00627fca8caf8bfeea7664205ce810b30b0614",
+    "HASIL_V46.md": "f27269872561f41506648121d9c1d8127a70434c6ea639a3e47a41a2673a9bdf",
+    "paired_deltas.csv": "dfa2c1e3d213df65bbc708bdc6910b821b8e2e7ef47cb536cf9a76b2f70d2192",
+    "summary.csv": "548702d8e3a37393c1dd8cce9fb62e8bb6f1d04bf22dfe50c69e18220d4b861c"
+  }
+}

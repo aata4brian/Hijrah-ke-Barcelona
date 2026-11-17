@@ -1,0 +1,4 @@
+﻿candidate,baseline,pairs,unique_matches,delta_spellF1_match_mean,positive_pairs,negative_pairs,tied_pairs,worst_pair_delta
+expanded_tracking_features,control_old_features,75,7,0.0,0,0,75,0.0
+calibration_selected_v46,frozen_deep_v45,75,7,0.0005942526102737133,21,8,46,-0.012555730845737023
+calibration_selected_v46,frozen_ensemble_deep_v45,75,7,0.0035917012618033794,43,32,0,-0.03454224370294645

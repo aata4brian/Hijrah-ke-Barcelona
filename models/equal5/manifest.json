@@ -1,0 +1,90 @@
+{
+  "candidate": "calibration_fusion_v46_equal5",
+  "folds": [
+    {
+      "fold": 0,
+      "tree_weight": 0.25,
+      "deep": {
+        "file": "fold_0_deep.joblib.b64",
+        "sha256": "3cf25067ecb965beb2357f7388ab0b8171b5b1ac6e46753e90867416cc03bf31",
+        "bytes": 637959
+      },
+      "tree": {
+        "file": "fold_0_tree.joblib.b64",
+        "sha256": "8161e725a3fe634b4e77f1a7e97279d4692a640bbc96ff69f642fdb0d677e9a0",
+        "bytes": 1750701
+      }
+    },
+    {
+      "fold": 1,
+      "tree_weight": 0.0,
+      "deep": {
+        "file": "fold_1_deep.joblib.b64",
+        "sha256": "044b6804d16cb330c419246acfbeae2a83c6344e556f4cd432c5459d928f1d49",
+        "bytes": 638092
+      },
+      "tree": {
+        "file": "fold_1_tree.joblib.b64",
+        "sha256": "f899bec040b43b15bbe4a8dd26e1961b3ad316e0e8ee07484a1d523106b70af3",
+        "bytes": 1752738
+      }
+    },
+    {
+      "fold": 2,
+      "tree_weight": 0.0,
+      "deep": {
+        "file": "fold_2_deep.joblib.b64",
+        "sha256": "21884b70621a7ffedb6b0af5bedeed98252040930115a5d61ae4d511bd240ccb",
+        "bytes": 637445
+      },
+      "tree": {
+        "file": "fold_2_tree.joblib.b64",
+        "sha256": "1c1a566b6ef9ecec86a2f0e5524a0a15c8969bbbee8aa9bdf5f4439bb6f31322",
+        "bytes": 1754165
+      }
+    },
+    {
+      "fold": 3,
+      "tree_weight": 0.25,
+      "deep": {
+        "file": "fold_3_deep.joblib.b64",
+        "sha256": "51f5bf1b3bcecb30d50d980f2a0b38eb285d0b55e9e222f89ede6ed2b3c372f6",
+        "bytes": 637855
+      },
+      "tree": {
+        "file": "fold_3_tree.joblib.b64",
+        "sha256": "d54d20bf304e3e62b8225cd4a9d49b3f8cbd8eae553d2d60781877e1229fa0a3",
+        "bytes": 1753271
+      }
+    },
+    {
+      "fold": 4,
+      "tree_weight": 0.0,
+      "deep": {
+        "file": "fold_4_deep.joblib.b64",
+        "sha256": "897ddeb143d130b7a23b2c3f1766e29542cac59b30757852534eb7e3302bd1a4",
+        "bytes": 637842
+      },
+      "tree": {
+        "file": "fold_4_tree.joblib.b64",
+        "sha256": "2751fd449bfcd11e15ff00b37a7d9ea62f5fd719c78f648a980f3184cc7682a3",
+        "bytes": 1753912
+      }
+    }
+  ],
+  "feature_columns": 203,
+  "feature_storage": "float16 -> float32, matching the frozen candidate",
+  "expected_csv_sha256": "a38b30c361cacb08dcf3d60173eb137ff28f1517d8d463dd03ad666641599ae7",
+  "expected_deep_csv_sha256": "5a8ad4195b1348adcf9f26b321114eb3851940a95b515607ba2bbadb9767a6b5",
+  "target_manual_labels_used": false,
+  "cues_used": false,
+  "specialist_weight": 0,
+  "decoder": {
+    "team": 2.0,
+    "dead": 4.0,
+    "boundary_gain": 2.0,
+    "emission_scale": 0.2,
+    "dead_bias": -0.18,
+    "proposal_threshold": 0.1
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "rows": 75,
+  "elapsed_seconds": 1272.2349999999988,
+  "summary": [
+    {
+      "method": "frozen_ensemble_deep_v45",
+      "matches": 3,
+      "rows": 15,
+      "spellF1": 0.6537710403770934,
+      "macroF1": 0.9175658105232948,
+      "predicted_spells": 401.65000000000003,
+      "reference_spells": 391.0
+    },
+    {
+      "method": "calibration_selected_v46",
+      "matches": 3,
+      "rows": 15,
+      "spellF1": 0.649787968227257,
+      "macroF1": 0.9149114267337225,
+      "predicted_spells": 416.51666666666665,
+      "reference_spells": 391.0
+    },
+    {
+      "method": "control_old_features",
+      "matches": 3,
+      "rows": 15,
+      "spellF1": 0.649787968227257,
+      "macroF1": 0.9149114267337225,
+      "predicted_spells": 416.51666666666665,
+      "reference_spells": 391.0
+    },
+    {
+      "method": "expanded_tracking_features",
+      "matches": 3,
+      "rows": 15,
+      "spellF1": 0.649787968227257,
+      "macroF1": 0.9149114267337225,
+      "predicted_spells": 416.51666666666665,
+      "reference_spells": 391.0
+    },
+    {
+      "method": "frozen_deep_v45",
+      "matches": 3,
+      "rows": 15,
+      "spellF1": 0.649787968227257,
+      "macroF1": 0.9149114267337225,
+      "predicted_spells": 416.51666666666665,
+      "reference_spells": 391.0
+    }
+  ],
+  "frozen_baselines_reproduced": true,
+  "complete": true,
+  "promoted": false,
+  "target_gt_read": false,
+  "artifacts_sha256": {
+    "manifest.json": "b79ed82f590708e4f780a0c4bdb287aa31110c9c5f546c6108e4bc252c76fe4d",
+    "calibration_selection.json": "dc8e79283781e4ad9e1cb1ba298f02f66dfd93db12b0d40e39a9f885bbccd78f",
+    "old_specialist.joblib": "9097b71ed74c5c086876621b1fc6bb93b8a2aa2a45c5f88e3addeb9cedc547c8",
+    "expanded_specialist.joblib": "637ba47ebacc2e15369209a5a5f916eeb0c7d1b9bdf6c9e5486a91d92f382a96",
+    "performa_detail.csv": "630bfec65d07fab1a30692bb35b8bbf9f394301949cca3645856d1f4b6168473",
+    "ringkasan_performa.csv": "2c2e3ddbc97fc61d88a0a3c0e692bf10c7a5011b6fc4103704e5937f0097e364",
+    "rows_J03WOH_original.json": "e08f654372525e81683d16dd7b61de839f730163054d0b3463278db83c9dee24",
+    "rows_J03WOH_short_gaps.json": "29d3f4afc9adc764da1d3dfee75e3e74d0188aa44bcc1781bf88db6dea41b186",
+    "rows_J03WOH_long_gaps.json": "dcbed6e4d11252972cfd184a8a151a0fc0b387e3d23302859d05b7a920954237",
+    "rows_J03WOH_camera_gaps.json": "d35a3f64f4c2c40ca69c8ceaea34c501ad70ae2b47e526bafb7859d0d80dc174",
+    "rows_J03WOH_drift.json": "9c5698175d5c477d37291be6bb0623405a6d7828c62c7992ef700a3eef147d57",
+    "rows_J03WQQ_original.json": "b7993b0918b5cd439e6284be6bc88588c963a8010ebc243ad51ec81a9d80f82c",
+    "rows_J03WQQ_short_gaps.json": "e82675d433ad9fffd42928180f95f37f00de627ec9eeb96577fe6dd5dc031295",
+    "rows_J03WQQ_long_gaps.json": "23fb7367be7efe312b2802e63613b30312543981ac82755e70983e68db6ca5ee",
+    "rows_J03WQQ_camera_gaps.json": "6c30ffa18b1b04ff34418707ed2197a93332e79e461aae0159baea72eee75a59",
+    "rows_J03WQQ_drift.json": "ffcbe88e0ed70d2e0ed971450c37989c200db53efb51227fb262b33b5f3b18d7",
+    "rows_J03WR9_original.json": "b7f897838d482d2670f1b76b2c8cddbfa63200fca620331d2d34f77d836b1e53",
+    "rows_J03WR9_short_gaps.json": "cd74d9226b4b0626fb513bdf648c0f2dcc87a0f01176b44dea126c04cccbc0b4",
+    "rows_J03WR9_long_gaps.json": "dcca99740de52f4a1079cc7f36f4770715e9d610884ebe2b137b2a8b00aca5fe",
+    "rows_J03WR9_camera_gaps.json": "f87737bd26db48276474265ef19176c8e5beea7e6cdf0e7e5f9a2f8e3704d1cb",
+    "rows_J03WR9_drift.json": "c4d11b128672a5ba272ada70d6f5fe4acad1dadd8f28c87976a816a8a784a19e"
+  }
+}

@@ -1,0 +1,306 @@
+{
+  "chosen": {
+    "specialist": "old",
+    "tree_weight": 0.0,
+    "specialist_weight": 0.0,
+    "decoder": {
+      "team": 2.0,
+      "dead": 4.0,
+      "boundary_gain": 1.0,
+      "emission_scale": 0.2,
+      "dead_bias": -0.18,
+      "proposal_threshold": 0.15
+    },
+    "calibration_spellF1": 0.6539679447151344
+  },
+  "by_ablation": {
+    "old": {
+      "specialist": "old",
+      "tree_weight": 0.0,
+      "specialist_weight": 0.0,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6539679447151344
+    },
+    "expanded": {
+      "specialist": "expanded",
+      "tree_weight": 0.0,
+      "specialist_weight": 0.0,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6539679447151344
+    }
+  },
+  "candidates": [
+    {
+      "specialist": "old",
+      "tree_weight": 0.0,
+      "specialist_weight": 0.0,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6539679447151344
+    },
+    {
+      "specialist": "old",
+      "tree_weight": 0.0,
+      "specialist_weight": 0.15,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6524790105891967
+    },
+    {
+      "specialist": "old",
+      "tree_weight": 0.0,
+      "specialist_weight": 0.35,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6387766288925737
+    },
+    {
+      "specialist": "old",
+      "tree_weight": 0.25,
+      "specialist_weight": 0.0,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6518820727460691
+    },
+    {
+      "specialist": "old",
+      "tree_weight": 0.25,
+      "specialist_weight": 0.15,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6416015026894799
+    },
+    {
+      "specialist": "old",
+      "tree_weight": 0.25,
+      "specialist_weight": 0.35,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6295882613485694
+    },
+    {
+      "specialist": "old",
+      "tree_weight": 0.5,
+      "specialist_weight": 0.0,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6347623351653524
+    },
+    {
+      "specialist": "old",
+      "tree_weight": 0.5,
+      "specialist_weight": 0.15,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6261311700553128
+    },
+    {
+      "specialist": "old",
+      "tree_weight": 0.5,
+      "specialist_weight": 0.35,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6038285856441301
+    },
+    {
+      "specialist": "expanded",
+      "tree_weight": 0.0,
+      "specialist_weight": 0.0,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6539679447151344
+    },
+    {
+      "specialist": "expanded",
+      "tree_weight": 0.0,
+      "specialist_weight": 0.15,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6528840317557415
+    },
+    {
+      "specialist": "expanded",
+      "tree_weight": 0.0,
+      "specialist_weight": 0.35,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6449173448623023
+    },
+    {
+      "specialist": "expanded",
+      "tree_weight": 0.25,
+      "specialist_weight": 0.0,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6518820727460691
+    },
+    {
+      "specialist": "expanded",
+      "tree_weight": 0.25,
+      "specialist_weight": 0.15,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6463718801007031
+    },
+    {
+      "specialist": "expanded",
+      "tree_weight": 0.25,
+      "specialist_weight": 0.35,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6307056896486695
+    },
+    {
+      "specialist": "expanded",
+      "tree_weight": 0.5,
+      "specialist_weight": 0.0,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6347623351653524
+    },
+    {
+      "specialist": "expanded",
+      "tree_weight": 0.5,
+      "specialist_weight": 0.15,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.627756199971126
+    },
+    {
+      "specialist": "expanded",
+      "tree_weight": 0.5,
+      "specialist_weight": 0.35,
+      "decoder": {
+        "team": 2.0,
+        "dead": 4.0,
+        "boundary_gain": 1.0,
+        "emission_scale": 0.2,
+        "dead_bias": -0.18,
+        "proposal_threshold": 0.15
+      },
+      "calibration_spellF1": 0.6124367763257222
+    }
+  ],
+  "selection_source": "calibration match only; no test labels used",
+  "temperatures": {
+    "old": 0.684208725719942,
+    "expanded": 0.6948044927875174
+  },
+  "calibration_match": "J03WOY"
+}

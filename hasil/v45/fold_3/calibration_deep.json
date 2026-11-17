@@ -1,0 +1,14 @@
+{
+  "raw": {
+    "state_nll": 0.18505607545375824,
+    "edge_brier": 0.010771996341645718,
+    "edge_prevalence": 0.002939815289775279,
+    "edge_mean_probability": 0.03320511803030968
+  },
+  "calibrated": {
+    "state_nll": 0.18331362307071686,
+    "edge_brier": 0.002207294339314103,
+    "edge_prevalence": 0.002939815289775279,
+    "edge_mean_probability": 0.002918313955888152
+  }
+}

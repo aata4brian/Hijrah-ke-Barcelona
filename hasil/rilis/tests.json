@@ -1,0 +1,10 @@
+{
+  "unit_tests_discovered": 24,
+  "passed": 23,
+  "skipped": 1,
+  "failed": 0,
+  "skipped_reason": "Local measured pilot not distributed",
+  "viewer_node_test": "passed; no real video playback tested",
+  "official_submission_validator": "passed; 199319 rows",
+  "gpu_training_suite": "not fully verified; earlier backend failure documented"
+}

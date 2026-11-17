@@ -1,0 +1,67 @@
+{
+  "chosen": {
+    "team": 2.0,
+    "dead": 4.0,
+    "boundary_gain": 1.0,
+    "emission_scale": 0.2,
+    "dead_bias": -0.18,
+    "proposal_threshold": 0.15
+  },
+  "candidates": [
+    {
+      "team": 2.0,
+      "dead": 4.0,
+      "boundary_gain": 1.0,
+      "emission_scale": 0.2,
+      "dead_bias": -0.18,
+      "proposal_threshold": 0.025,
+      "calibration_spellF1": 0.627311205168189
+    },
+    {
+      "team": 2.0,
+      "dead": 4.0,
+      "boundary_gain": 2.0,
+      "emission_scale": 0.2,
+      "dead_bias": -0.18,
+      "proposal_threshold": 0.025,
+      "calibration_spellF1": 0.6220357694855376
+    },
+    {
+      "team": 2.0,
+      "dead": 4.0,
+      "boundary_gain": 1.0,
+      "emission_scale": 0.2,
+      "dead_bias": -0.18,
+      "proposal_threshold": 0.075,
+      "calibration_spellF1": 0.6383211678832117
+    },
+    {
+      "team": 2.0,
+      "dead": 4.0,
+      "boundary_gain": 2.0,
+      "emission_scale": 0.2,
+      "dead_bias": -0.18,
+      "proposal_threshold": 0.075,
+      "calibration_spellF1": 0.6336579841449603
+    },
+    {
+      "team": 2.0,
+      "dead": 4.0,
+      "boundary_gain": 1.0,
+      "emission_scale": 0.2,
+      "dead_bias": -0.18,
+      "proposal_threshold": 0.15,
+      "calibration_spellF1": 0.6455555555555555
+    },
+    {
+      "team": 2.0,
+      "dead": 4.0,
+      "boundary_gain": 2.0,
+      "emission_scale": 0.2,
+      "dead_bias": -0.18,
+      "proposal_threshold": 0.15,
+      "calibration_spellF1": 0.6410279944928867
+    }
+  ],
+  "selection_source": "calibration match only; repeated scenarios are not independent matches"
+}

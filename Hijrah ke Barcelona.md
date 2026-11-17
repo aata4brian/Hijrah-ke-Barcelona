@@ -1,55 +1,132 @@
-# Penguasaan Bola dari Tracking Tactical
+# Hijrah ke Barcelona — Technical document
 
-**Hijrah ke Barcelona · More Than a Hack 2027 · Initial Challenge**  
-**Kandidat saat ini: flat/play_bias · 11 November 2026**
+**More Than a Hack 2027, Initial Challenge. Release: 18 November 2026.**
 
-## Pendekatan
+## 1. Approach
 
-Pipeline membaca tracking tactical dan Smart Tagging otomatis dari paket panitia. Posisi bola dan pemain dikonversi ke meter. Fitur mencakup jarak bola terhadap kedua tim, gerak bola, ketersediaan tracking, geometri kolektif pemain, serta konteks sebelum dan sesudah suatu waktu. Identitas track diperlakukan sebagai slot pelacakan, bukan identitas pemain tetap.
+We estimate team possession as offline temporal segmentation with three internal
+states: home (H), away (A), and dead ball (D). Proximity alone is insufficient
+for passes, loose balls, and challenges, so the system combines tracking geometry,
+relative motion, contact context, and temporal state/boundary predictions.
+The submitted candidate is `calibration_fusion_v46_equal5`.
 
-Model HistGradientBoostingClassifier multikelas memprediksi H, A, dan D. Prediksi dengan pertukaran kedua tim dirata-ratakan untuk mengurangi ketergantungan pada urutan tim. Model bekerja pada langkah lima frame; decoder temporal memilih urutan status lalu mengembangkannya kembali menjadi satu label tiap frame. Biaya pergantian H–A adalah 2, biaya pergantian dengan D adalah 4, dan bias D adalah −0,18. Konfigurasi serta bobot yang dipakai dibekukan di eksperimen/frozen/v3/.
+The release extracts 203 tracking features in two team-swapped orientations.
+Missing observations remain explicit; the deep model combines normalized inputs
+and observation masks. Each frozen deep model is a warm-start dilated TCN with
+eight backbone blocks and a six-block probability refiner. It predicts three
+state probabilities and six directed transition probabilities. Team-swapped
+predictions are mapped back and averaged. Inference uses 8,192-frame chunks
+with the model's 636-frame halo; future context is allowed. This is not a
+causal or live-broadcast system.
 
-ATD memakai frame_id mulai 1, sehingga indeks video adalah frame_id − 1. Smart Tagging memakai detik dari awal video tactical dan diubah dengan round(detik × 25). Kedua babak diproses terpisah memakai batas resmi games.py. Keluaran tepat 199.319 baris, frame 0–199318, dengan header frame,label. Di luar kedua babak dipakai X.
+For each of five folds, calibrated deep probabilities are mixed with frozen
+histogram-gradient-boosting heads. Tree weights are 0.25 for folds 0 and 3 and
+zero for folds 1, 2, and 4; specialist weights are zero throughout. The five
+fold outputs are averaged equally before a fixed Viterbi decoder. Its settings
+are team=2, dead=4, boundary_gain=2, emission_scale=0.2, dead_bias=-0.18, and
+proposal_threshold=0.1. No target frame overrides or manual CSV edits are used.
 
-## Aset dan data latih
+## 2. Assets used and dropped
 
-Inferensi memakai tiga aset tactical: metadata ATD XML, tracking ATD TXT, dan Smart Tagging XML. Video dapat dibuka lewat viewer lokal untuk memeriksa sinkronisasi. Video, homography, dan broadcast tidak menjadi input kandidat ini. Tidak ada koreksi label manual pada pertandingan lomba.
+Release inference reads **only tactical raw ATD and its metadata** from the
+licensed competition bundle. Official `games.py` constants define the frame
+timeline, pitch dimensions, and playing-half blocks. The pipeline does not
+read target labels, Smart Tagging, video, audio, or homography. Match assets
+and target feature/probability exports are not redistributed.
 
-Model dilatih dari tracking dan label yang telah tersedia dalam dataset eksternal [IDSSE](https://doi.org/10.1038/s41597-025-04505-y), oleh Bassek dkk. (2025), berlisensi CC BY 4.0. [Berkas dataset](https://huggingface.co/datasets/pysport/idsse-data) harus diperoleh terpisah. Tim tidak membuat anotasi manual tambahan. Label status bola dan tim penguasa mengikuti anotasi penyedia dataset; pembacaan dan konversinya ada di night_tracking.py.
+Expanded tracking features, video ball recovery, and whistle/flag cues were
+explored separately. Their benefit was not adequately demonstrated for this
+release, so none is forced into the final prediction path. A zero specialist
+weight means equal ablation outputs are not proof that extra features contain
+no information.
 
-Lima laga pengembangan adalah J03WMX, J03WN1, J03WOH, J03WOY, dan J03WPY. Validasi pengembangan membagi laga menjadi dua fold, bukan membagi frame acak. Model final dilatih ulang pada lima laga tersebut. J03WQQ dan J03WR9 dipakai untuk evaluasi kandidat v3 sesudah konfigurasinya dibekukan. Metadata di decision.json merekam pembagian ini. Model mencakup fitur asli, celah bola pendek/panjang, gangguan tampilan kamera, dan pergeseran koordinat sintetis; label sintetis tetap berasal dari laga eksternal.
+## 3. Training data and protocol
 
-Lima menit ground truth publik lomba hanya untuk pemeriksaan format, arti label, dan sinkronisasi, bukan pelatihan atau pemilihan parameter. Ground truth privat lomba tidak digunakan.
+Supervision comes exclusively from seven external IDSSE matches: J03WMX,
+J03WN1, J03WOH, J03WOY, J03WPY, J03WQQ, and J03WR9. The source is Bassek,
+Rein, Weber, and Memmert (2025), *An integrated dataset of spatiotemporal and
+event data in elite soccer*, dataset DOI **10.6084/m9.figshare.28196177.v1**,
+article DOI **10.1038/s41597-025-04505-y**, licensed CC BY 4.0.
 
-## Aturan penguasaan dan restart
+Labels are supplied attributes `BallStatus` and `BallPossession` on the external
+BALL track, not new annotations created by our team. Live status with owners
+1/2 maps to H/A, dead status maps to D, and unavailable status/owner maps to X.
+We do not claim authorship of the original labels or invent individual operator
+identities beyond source documentation. Only metadata and observed-position
+XML are required; external event XML is not needed by this parser.
 
-Urutan H/A/D mengikuti bukti fitur dan decoder temporal. Penalti transisi mempertahankan penguasa saat bukti lawan hanya singkat, termasuk ketika bola lepas. Biaya tersebut berlaku umum dan tidak terikat nomor frame tertentu. Bola yang hilang tidak langsung diberi D.
+In each fold, three development matches train the model, one calibrates it,
+and the remaining development match is tested alongside J03WQQ/J03WR9. These
+last two are **known retests**, not newly untouched holdouts. Splits are by match,
+not random frames. Original, short-gap, long-gap, camera-gap, and drift scenarios
+test robustness. Calibration and mixture selection use the calibration match.
+Public target labels are reserved for format/alignment checking, not tuning.
 
-Setelah decoder, aturan tambahan bola mati memeriksa bukti restart dari Smart Tagging dan tracking. Tag set piece saja tidak cukup: sistem mencari bola relatif diam di lokasi yang sesuai dan dekat pemain, lalu gerak yang mendukung restart. Bukti bola keluar serta gol/kick-off diperiksa melalui lintasan bola. Implementasi lengkap ada di possession.py; aturan ini menghasilkan label secara otomatis.
+Manual review notes concerning the target were provided and seen during final
+preparation. They were not used for training, validation, candidate selection,
+thresholds, frame-specific rules, or editing the release. The packaged candidate
+was frozen beforehand. We do not represent unreviewed frames as correct or claim
+that the notes were never seen. AI assistance supported coding, testing, packaging,
+and documentation; final labels are algorithmic outputs from frozen models.
 
-## Hasil dan pemilihan
+## 4. Possession rules
 
-[Ringkasan v3](hasil/v3/ringkasan.md) dan CSV di folder yang sama membandingkan kandidat pada dua laga evaluasi serta uji stres. Kenaikan spellF1 kandidat terhadap v2 adalah sekitar 0,0224 pada evaluasi dua laga dan 0,0220 pada uji stres, dengan bobot skenario yang ditetapkan dalam kode. Kenaikan itu merupakan hasil IDSSE, bukan skor pertandingan lomba.
+Possession is treated as temporally continuous unless state and boundary
+evidence support a change. Loose balls and challenges have no extra class:
+their H/A/D status is inferred jointly rather than immediately switching to the
+nearest player. Restarts and dead-ball periods are inferred from tracking,
+not manually supplied whistle/event timestamps. This is a learned operational
+approximation, not a complete symbolic implementation of football laws.
 
-Pada putaran transisi berikutnya, rata-rata spellF1 pengembangan meningkat dari 0,5039 untuk flat/play_bias menjadi 0,5148 untuk switch. Namun, dua laga retest sudah pernah dipakai pada putaran v3, dan keempat laga SkillCorner gagal pemeriksaan sinkronisasi. Putaran tersebut mempertahankan flat/play_bias sesuai protokol pemeriksaannya. [Keputusan dan tabel lengkap](hasil/transisi/).
+Each official half is decoded separately. Outside those half blocks, D is a
+timeline placeholder, not a model-inferred dead-ball decision. The CSV has no
+X predictions; that does not mean all frames are certain.
 
-Seluruh 15 pilihan menu diperiksa dengan validator resmi. Nomor 7 mereproduksi kandidat saat ini. Bukti jumlah baris dan hash keluaran ada di hasil/verifikasi_paket.json. Hasil Barcelona vs Athletic dihasilkan lokal dan diserahkan melalui formulir resmi.
+## 5. Results and limitations
 
-## Keterbatasan
+The V4.6 controlled experiment contains 375 evaluation rows across five folds,
+three test matches per fold, five scenarios, and five methods, involving seven
+unique matches. Rows are not independent new games. Calibration-selected
+per-fold SpellF1 is **0.6483558219452347**, versus **0.6477615693349609** for
+frozen deep V4.5. Control 203-feature and expanded-feature methods have the same
+selected outputs because all specialist weights are zero.
 
-Jumlah laga eksternal masih kecil dan penyedia tracking berbeda dari data lomba. Gangguan sintetis belum mewakili seluruh kesalahan kamera, deteksi, dan pelacakan sebenarnya. Celah bola panjang dapat menyembunyikan peralihan penguasaan. Penalti temporal dapat menghapus penguasaan singkat yang benar atau menggeser batas episode. Cabang restart Smart Tagging tidak memiliki anotasi eksternal dengan format yang sama. Metode ini memakai konteks masa depan sehingga sesuai untuk analisis setelah pertandingan, bukan inferensi langsung tanpa jeda. Skor privat pertandingan lomba belum diketahui.
+These are **not scores for the submitted equal-five ensemble** or the private
+competition match. The release uses a different fixed decoder from the evaluated
+per-fold decoder, and float16-to-float32 feature conversion to match the frozen
+candidate; external evaluation extracted float32. A fresh external holdout for
+the entire ensemble has not been measured. Reused matches, synthetic corruption,
+domain shift, missing ball observations, and ambiguous restarts limit inference.
+No private score, rank, statistical significance, or uniform improvement is claimed.
 
-## Reproduksi
+## 6. Reproduction
 
-Gunakan Python 3.12 dan dependensi yang dipatok di eksperimen/requirements-lock.txt. Dari root repo:
+Use Windows x64, Python 3.12.10, pinned `requirements-release.txt`, and the
+official data bundle acquired separately by an authorized participant:
 
 ```powershell
-python -m pip install -r requirements.txt
-python eksperimen/run.py --method 7 --data-dir "D:\\MTAH\\data"
+python -m pip install --extra-index-url https://download.pytorch.org/whl/cu121 -r requirements-release.txt
+python -m riset_v4.release --data-dir "D:\MTAH\data" --output "outputs\equal5\Hijrah ke Barcelona.csv"
+python evaluation/validate_submission.py "outputs\equal5\Hijrah ke Barcelona.csv"
 ```
 
-Di Windows, JALANKAN.bat menyiapkan environment lalu menampilkan menu. Folder data harus berisi tactical/ dengan nama berkas asli panitia. Setiap run membuat subfolder baru dalam outputs/ berisi Hijrah ke Barcelona.csv dan run.json; SHA-256 dapat dibandingkan dengan catatan verifikasi. Pemisahan output mencegah hasil anggota lain tertimpa.
+Five deep and five tree artifacts are stored as base64-encoded joblib files,
+with binary sizes and SHA256 in `models/equal5/manifest.json`. The loader checks
+integrity before deserialization; only trusted artifacts should be loaded.
+Inference requires no training, target cache, annotations, or remote model API.
+Existing output files are not overwritten. A final hash mismatch is retained
+as `.pending`, not promoted as a successful result.
 
-Kode pelatihan awal dan eksplorasi tersedia di eksperimen/pipeline/night_benchmark.py serta explore_benchmark.py. Petunjuk reproduksi pelatihan ada di [eksperimen/PELATIHAN.md](eksperimen/PELATIHAN.md). Menu 1–15 menjalankan inferensi; bobot final sudah disertakan.
+Raw-to-CSV reproduction has been verified **byte-identical** on the release
+environment: 199,319 rows (frames 0–199318), header `frame,label`, SHA256:
 
-[Repo tim](https://github.com/aata4brian/more-than-a-hack) · [Aturan panitia](https://github.com/metrica-sports/more-than-a-hack-2027/blob/main/RULES.md)
+```text
+a38b30c361cacb08dcf3d60173eb137ff28f1517d8d463dd03ad666641599ae7
+```
+
+See `hasil/rilis/reproduction.json` and `dokumen/REPRODUKSI.md`. Cross-platform
+bitwise determinism and all training-GPU configurations are not claimed.
+Extended methodology, ablations, provenance, and references are indexed in
+`dokumen/README.md`. Organizers' source, rules, and scorer are attributed to
+Metrica Sports and Barça Innovation Hub; their MIT code license does not
+license competition match assets.

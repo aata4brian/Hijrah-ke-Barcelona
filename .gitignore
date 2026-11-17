@@ -83,3 +83,19 @@ BAR-ATH_*_smart_tagging.xml
 
 # Per-device dataset and viewer selection
 .mtah-local.json
+
+# Release safety: private review notes, browser logs, target sidecars and local state
+*Rekap*Manual*
+*Evaluasi*Akhir*Manual*
+.playwright-mcp/
+*.pending
+*.verification.json
+*.log
+*.npy
+*.pt
+*.zip
+*.joblib
+!eksperimen/frozen/**/*.joblib
+verification/
+submission/
+!hasil/rilis/*.json

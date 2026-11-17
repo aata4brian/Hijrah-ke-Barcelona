@@ -1,5 +1,48 @@
 # Hijrah ke Barcelona
 
+## Rilis pengumpulan: equal5 V4.6
+
+Kandidat rilis adalah **calibration_fusion_v46_equal5**, bukan menu 7 di arsip
+eksperimen. Raw tracking tactical dan metadata resmi diproses menjadi 203 fitur,
+lima deep temporal model, campuran pohon terkalibrasi, dan satu decoder tetap.
+Tidak ada koreksi label manual.
+
+```powershell
+python -m pip install --extra-index-url https://download.pytorch.org/whl/cu121 -r requirements-release.txt
+python -m riset_v4.release --data-dir "D:\MTAH\data" --output "outputs\equal5\Hijrah ke Barcelona.csv"
+python evaluation/validate_submission.py "outputs\equal5\Hijrah ke Barcelona.csv"
+```
+
+Python 3.12.10; gunakan environment virtual. Reproduksi dari raw ATD sudah
+dibuktikan **byte-identik**, 199.319 frame, SHA256
+`a38b30c361cacb08dcf3d60173eb137ff28f1517d8d463dd03ad666641599ae7`.
+Bukti ada di [hasil/rilis](hasil/rilis/). Data berlisensi tetap di komputer
+peserta; repo tidak menyediakan video, tracking target, atau cache fitur target.
+
+Mulai dari [dokumen teknis singkat](Hijrah%20ke%20Barcelona.md),
+[panduan reproduksi](dokumen/REPRODUKSI.md), dan
+[indeks pembahasan akademik](dokumen/README.md).
+Hasil eksternal V4.6 sekitar SpellF1 0,648356 adalah evaluasi **per fold** pada
+tujuh laga yang sudah dikenal, bukan skor ensemble rilis atau skor privat lomba.
+Expanded features/cue belum terbukti memberi manfaat dan tidak diaktifkan.
+
+Catatan manual target sempat dibaca pada persiapan akhir, tetapi tidak dipakai
+untuk mengubah, memilih, melatih, atau memvalidasi kandidat yang sudah beku.
+Lihat [provenance](dokumen/DATA_DAN_PROVENANCE.md) dan
+[batas kepatuhan](dokumen/KEPATUHAN.md). Review manusia bukan sumber label
+pengumpulan, termasuk bila dokumen kerja lama pernah mengusulkannya.
+
+Pekerjaan rekan dan penelitian terdahulu dipertahankan di branch
+`team-dispatch-frame-review-20261116` dan `riset/v4-switch-contact-tcn-20261112`.
+Cache branch rekan berasal dari IDSSE eksternal CC BY 4.0; lihat
+`DATA_SUMBER_TIM.md` di branch tersebut. Tidak ada klaim bahwa seluruh
+eksperimen arsip dipakai dalam submission atau telah diuji ulang pada rilis.
+
+## Arsip menu eksperimen V1–V3
+
+Bagian berikut dipertahankan sebagai catatan kerja sebelumnya. Penyebutan
+"kandidat saat ini" pada bagian arsip tidak menggantikan entrypoint rilis di atas.
+
 Ruang kerja tim untuk fase Ball Possession di More Than a Hack 2027. Setiap percobaan menghasilkan CSV `frame,label` dengan 199.319 baris untuk kamera tactical. Nomor **07** mereproduksi kandidat `flat/play_bias` yang sudah diverifikasi.
 
 ## Jalankan percobaan
