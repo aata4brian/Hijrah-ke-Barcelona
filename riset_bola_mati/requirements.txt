@@ -1,0 +1,4 @@
+# Reference versions already present in the integrator environment.
+numpy==1.26.4
+scipy==1.17.1
+opencv-python-headless==4.11.0.86
